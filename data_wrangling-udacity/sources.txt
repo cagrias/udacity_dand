@@ -1,0 +1,13 @@
+- https://stackoverflow.com/a/48688342/4665915
+- https://www.tutorialspoint.com/python/list_append.htm
+- https://stackoverflow.com/a/31393988/4665915
+- https://stackoverflow.com/a/30770447/4665915
+- https://stackoverflow.com/a/17097777/4665915
+- https://stackoverflow.com/a/22341390/4665915
+- https://stackoverflow.com/a/19913845/4665915
+- https://stackoverflow.com/a/16476974/4665915
+- https://stackoverflow.com/a/26763793/4665915
+- https://stackoverflow.com/a/22247593/4665915
+- https://stackoverflow.com/a/27360130/4665915
+- https://stackoverflow.com/a/47181183/4665915
+- https://stackoverflow.com/a/13059751/4665915

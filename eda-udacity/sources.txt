@@ -1,0 +1,15 @@
+http://www.sthda.com/english/wiki/ggplot2-box-plot-quick-start-guide-r-software-and-data-visualization#change-box-plot-fill-colors
+
+http://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/
+
+https://s3.amazonaws.com/content.udacity-data.com/courses/ud651/diamondsExample_2016-05.html
+
+https://s3.amazonaws.com/udacity-hosted-downloads/ud651/wineQualityInfo.txt
+
+http://flowingdata.com/2015/02/18/loading-data-and-basic-formatting-in-r/
+
+http://flowingdata.com/2014/02/27/how-to-read-histograms-and-use-them-in-r/
+
+https://stackoverflow.com/questions/45109061/how-do-you-subset-a-data-frame-based-on-column-names
+
+https://ggplot2.tidyverse.org/reference/scale_brewer.html

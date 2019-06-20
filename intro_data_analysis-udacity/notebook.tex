@@ -1,0 +1,1181 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{cagri\_aslanbas\_project}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \paragraph{Student Name: Cagri
+Aslanbas}\label{student-name-cagri-aslanbas}
+
+\section{Project: Investigation of TMDb Movie Data
+Set}\label{project-investigation-of-tmdb-movie-data-set}
+
+\subsection{Table of Contents}\label{table-of-contents}
+
+Introduction
+
+Data Wrangling
+
+Cleaning
+
+Exploratory Data Analysis
+
+Conclusions
+
+     \#\# Introduction
+
+\begin{quote}
+This Jupyter Notebook document explores The Movie Database (TMDb) data
+set. It scrutinizes the correlation between movies' vote averages and
+other factors between each other such as its genre, revenue etc.
+
+Vote average variable of the movies will be the dependent variable and
+genres, revenue and release years will be the indepentent variables of
+this study.
+
+NOTE: We will use revenue\_adj column for our studies as this variable
+is in terms of 2010 dollars, accounting for inflation over time, which
+is more comparable.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} import the libraries that will be used}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+     \#\# Data Wrangling
+
+\begin{quote}
+In this section, we will have a look at the raw TMDb data and shape it
+into a form such that it will have the relevant data that will be needed
+in our analysis only.
+
+Colunms that won't be used will be trimmed in this section.
+\end{quote}
+
+\subsubsection{General Properties:}\label{general-properties}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} read the TMDb csv file}
+        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tmdb\PYZhy{}movies.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10866 entries, 0 to 10865
+Data columns (total 21 columns):
+id                      10866 non-null int64
+imdb\_id                 10856 non-null object
+popularity              10866 non-null float64
+budget                  10866 non-null int64
+revenue                 10866 non-null int64
+original\_title          10866 non-null object
+cast                    10790 non-null object
+homepage                2936 non-null object
+director                10822 non-null object
+tagline                 8042 non-null object
+keywords                9373 non-null object
+overview                10862 non-null object
+runtime                 10866 non-null int64
+genres                  10843 non-null object
+production\_companies    9836 non-null object
+release\_date            10866 non-null object
+vote\_count              10866 non-null int64
+vote\_average            10866 non-null float64
+release\_year            10866 non-null int64
+budget\_adj              10866 non-null float64
+revenue\_adj             10866 non-null float64
+dtypes: float64(4), int64(6), object(11)
+memory usage: 1.7+ MB
+
+    \end{Verbatim}
+
+    \subsubsection{Trimming columns that will not be
+used:}\label{trimming-columns-that-will-not-be-used}
+
+\begin{quote}
+This study will get use of columns vote\_average (dependant variable),
+revenue\_adj, release\_year and genres (independent variables) for
+exploration. We will also need the original\_title, id and vote\_count
+columns for clear identification of the movies.
+
+Therefore, other columns will be dropped before data cleaning.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} dropping redundant columns}
+        \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{popularity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{runtime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{director}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cast}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{keywords}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{release\PYZus{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{homepage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imdb\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tagline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{overview}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{production\PYZus{}companies}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10866 entries, 0 to 10865
+Data columns (total 7 columns):
+id                10866 non-null int64
+original\_title    10866 non-null object
+genres            10843 non-null object
+vote\_count        10866 non-null int64
+vote\_average      10866 non-null float64
+release\_year      10866 non-null int64
+revenue\_adj       10866 non-null float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 594.3+ KB
+
+    \end{Verbatim}
+
+    \begin{quote}
+We can see that there are 10866 rows. Except genres column, none of the
+columns have null values. We need to drop the rows that has null genres
+value as we cannot replace null genres values with something else (it is
+not a measurable variable).
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} drop rows with null values}
+        \PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{any}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 10843 entries, 0 to 10865
+Data columns (total 7 columns):
+id                10843 non-null int64
+original\_title    10843 non-null object
+genres            10843 non-null object
+vote\_count        10843 non-null int64
+vote\_average      10843 non-null float64
+release\_year      10843 non-null int64
+revenue\_adj       10843 non-null float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 677.7+ KB
+
+    \end{Verbatim}
+
+     \#\# Cleaning
+
+\begin{quote}
+In this section, we will clean the cells that are null or zero and also
+irreplaceable.
+
+In the end, we will make sure we have meaningful data in each movie
+entry.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:}                   id    vote\_count  vote\_average  release\_year   revenue\_adj
+        count   10843.000000  10843.000000  10843.000000  10843.000000  1.084300e+04
+        mean    65868.491930    217.813705      5.973974   2001.315595  5.147332e+07
+        std     91977.394803    576.155351      0.934260     12.813298  1.447664e+08
+        min         5.000000     10.000000      1.500000   1960.000000  0.000000e+00
+        25\%     10589.500000     17.000000      5.400000   1995.000000  0.000000e+00
+        50\%     20558.000000     38.000000      6.000000   2006.000000  0.000000e+00
+        75\%     75182.000000    146.000000      6.600000   2011.000000  3.387655e+07
+        max    417859.000000   9767.000000      9.200000   2015.000000  2.827124e+09
+\end{Verbatim}
+            
+    \begin{quote}
+It's pretty clear that at least half (50\% percentile) of the movie
+rows' revenue\_adj values are equal to zero (0.0). In order to make
+healthy analysis, we need rows with non-zero revenue\_adj values.
+Therefore I will filter those with query function of pandas.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} drop rows that have zero revenue\PYZus{}adj values}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue\PYZus{}adj \PYZgt{} 0.0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 4850 entries, 0 to 10848
+Data columns (total 7 columns):
+id                4850 non-null int64
+original\_title    4850 non-null object
+genres            4850 non-null object
+vote\_count        4850 non-null int64
+vote\_average      4850 non-null float64
+release\_year      4850 non-null int64
+revenue\_adj       4850 non-null float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 303.1+ KB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:}                   id   vote\_count  vote\_average  release\_year   revenue\_adj
+        count    4850.000000  4850.000000   4850.000000   4850.000000  4.850000e+03
+        mean    44575.000619   436.215876      6.148763   2000.921649  1.150774e+08
+        std     72361.405911   806.416200      0.798795     11.569192  1.988419e+08
+        min         5.000000    10.000000      2.100000   1960.000000  2.370705e+00
+        25\%      8286.000000    46.000000      5.600000   1994.000000  1.046262e+07
+        50\%     12154.500000   147.000000      6.200000   2004.000000  4.392749e+07
+        75\%     43956.500000   435.000000      6.700000   2010.000000  1.315644e+08
+        max    417859.000000  9767.000000      8.400000   2015.000000  2.827124e+09
+\end{Verbatim}
+            
+    \begin{quote}
+In order to make a fair analysis, movies that have low number of
+vote\_counts need to be eliminated. In the next step, I will dig deep
+into the vote\_count column and drop some movies that have vote counts
+under a certain threshold. To do that lets start with the histogram of
+the vote\_counts.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{quote}
+Let's split the movies into two groups: movies that has total vote count
+under the mean value (which is 217) and over the mean value. And see
+both of these data frames correlation to the vote\_average.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{df\PYZus{}low\PYZus{}vote\PYZus{}counts} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count \PYZlt{}= 217}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{df\PYZus{}high\PYZus{}vote\PYZus{}counts} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count \PYZgt{} 217}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{df\PYZus{}low\PYZus{}vote\PYZus{}counts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+        \PY{n}{df\PYZus{}high\PYZus{}vote\PYZus{}counts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{quote}
+When these two graphs are compared, it's obvious that the vote average
+of movies having vote counts less than 45-50 do not have a meaningful
+pattern as low vote counts can shape the vote average dramatically.
+Therefore we can drop the movies with vote counts less than 45.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count \PYZgt{}= 45}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 3689 entries, 0 to 10828
+Data columns (total 7 columns):
+id                3689 non-null int64
+original\_title    3689 non-null object
+genres            3689 non-null object
+vote\_count        3689 non-null int64
+vote\_average      3689 non-null float64
+release\_year      3689 non-null int64
+revenue\_adj       3689 non-null float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 230.6+ KB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} lets see the first 10 rows}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:}        id                original\_title  \textbackslash{}
+         0  135397                Jurassic World   
+         1   76341            Mad Max: Fury Road   
+         2  262500                     Insurgent   
+         3  140607  Star Wars: The Force Awakens   
+         4  168259                     Furious 7   
+         5  281957                  The Revenant   
+         6   87101            Terminator Genisys   
+         7  286217                   The Martian   
+         8  211672                       Minions   
+         9  150540                    Inside Out   
+         
+                                               genres  vote\_count  vote\_average  \textbackslash{}
+         0  Action|Adventure|Science Fiction|Thriller        5562           6.5   
+         1  Action|Adventure|Science Fiction|Thriller        6185           7.1   
+         2         Adventure|Science Fiction|Thriller        2480           6.3   
+         3   Action|Adventure|Science Fiction|Fantasy        5292           7.5   
+         4                      Action|Crime|Thriller        2947           7.3   
+         5           Western|Drama|Adventure|Thriller        3929           7.2   
+         6  Science Fiction|Action|Thriller|Adventure        2598           5.8   
+         7            Drama|Adventure|Science Fiction        4572           7.6   
+         8          Family|Animation|Adventure|Comedy        2893           6.5   
+         9                    Comedy|Animation|Family        3935           8.0   
+         
+            release\_year   revenue\_adj  
+         0          2015  1.392446e+09  
+         1          2015  3.481613e+08  
+         2          2015  2.716190e+08  
+         3          2015  1.902723e+09  
+         4          2015  1.385749e+09  
+         5          2015  4.903142e+08  
+         6          2015  4.053551e+08  
+         7          2015  5.477497e+08  
+         8          2015  1.064192e+09  
+         9          2015  7.854116e+08  
+\end{Verbatim}
+            
+    \begin{quote}
+Finally, we need to drop the duplicate values if any.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 1
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 0
+\end{Verbatim}
+            
+     \#\# Exploratory Data Analysis
+
+\paragraph{In this section, we will try to find answers to two
+questions:}\label{in-this-section-we-will-try-to-find-answers-to-two-questions}
+
+Which genres has the highest average of votes from year to year in
+2000s?
+
+Is there any relation between the movies' vote average and revenue in
+terms of 2010 dollars?
+
+    \subparagraph{1. Which genres has the highest average of votes from year
+to year in
+2000s?}\label{which-genres-has-the-highest-average-of-votes-from-year-to-year-in-2000s}
+
+\begin{quote}
+This question requires a multiple-variable (2d) exploration, which
+consists of a correlation between our dependant variable vote\_average
+and two independant variables release\_year and genres.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}        id                original\_title  \textbackslash{}
+         0  135397                Jurassic World   
+         1   76341            Mad Max: Fury Road   
+         2  262500                     Insurgent   
+         3  140607  Star Wars: The Force Awakens   
+         4  168259                     Furious 7   
+         5  281957                  The Revenant   
+         6   87101            Terminator Genisys   
+         7  286217                   The Martian   
+         8  211672                       Minions   
+         9  150540                    Inside Out   
+         
+                                               genres  vote\_count  vote\_average  \textbackslash{}
+         0  Action|Adventure|Science Fiction|Thriller        5562           6.5   
+         1  Action|Adventure|Science Fiction|Thriller        6185           7.1   
+         2         Adventure|Science Fiction|Thriller        2480           6.3   
+         3   Action|Adventure|Science Fiction|Fantasy        5292           7.5   
+         4                      Action|Crime|Thriller        2947           7.3   
+         5           Western|Drama|Adventure|Thriller        3929           7.2   
+         6  Science Fiction|Action|Thriller|Adventure        2598           5.8   
+         7            Drama|Adventure|Science Fiction        4572           7.6   
+         8          Family|Animation|Adventure|Comedy        2893           6.5   
+         9                    Comedy|Animation|Family        3935           8.0   
+         
+            release\_year   revenue\_adj  
+         0          2015  1.392446e+09  
+         1          2015  3.481613e+08  
+         2          2015  2.716190e+08  
+         3          2015  1.902723e+09  
+         4          2015  1.385749e+09  
+         5          2015  4.903142e+08  
+         6          2015  4.053551e+08  
+         7          2015  5.477497e+08  
+         8          2015  1.064192e+09  
+         9          2015  7.854116e+08  
+\end{Verbatim}
+            
+    \begin{quote}
+Movies mostly have more than one genres splitted with the pipe delimiter
+"\textbar{}" character. We need to create duplicates of each movie by
+the number of genre type it has. Then split the genres and spread them
+into each duplicate movie it belongs.
+
+For example for the movie "Jurassic World" (id:135397), it has 4 genres,
+namely "Action\textbar{}Adventure\textbar{}Science
+Fiction\textbar{}Thriller". We need to create 4 duplicates of "Jurassic
+Park" and assign Action, Adventure, Science Fiction and Thriller to each
+of its genre, separately.
+
+Let's see how many movies have multiple genres:
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} see how many movies have multiple genres}
+         \PY{n}{multiple\PYZus{}genres} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{genres}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{|}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{multiple\PYZus{}genres}\PY{o}{.}\PY{n}{shape}\PY{p}{)}\PY{p}{;}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3057, 7)
+(3688, 7)
+
+    \end{Verbatim}
+
+    \begin{quote}
+Okay, 3058 of our total 3689 movies have multiple genres. Another tricky
+part is that the number of genre types for each movie is not static, it
+differs from one movie to another.
+
+Since the number of genres each movie has is dynamic, I have searched a
+way to do it from Stackoverflow and found a function that solves this
+problem (Stackoverflow source):
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{def} \PY{n+nf}{tidy\PYZus{}split}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{column}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{keep}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+             \PY{n}{indexes} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
+             \PY{n}{new\PYZus{}values} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
+             \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{p}{[}\PY{n}{column}\PY{p}{]}\PY{p}{)}
+             \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{presplit} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{column}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{values} \PY{o}{=} \PY{n}{presplit}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{n}{sep}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{keep} \PY{o+ow}{and} \PY{n+nb}{len}\PY{p}{(}\PY{n}{values}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{1}\PY{p}{:}
+                     \PY{n}{indexes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+                     \PY{n}{new\PYZus{}values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{presplit}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{value} \PY{o+ow}{in} \PY{n}{values}\PY{p}{:}
+                     \PY{n}{indexes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+                     \PY{n}{new\PYZus{}values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+             \PY{n}{new\PYZus{}df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{indexes}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+             \PY{n}{new\PYZus{}df}\PY{p}{[}\PY{n}{column}\PY{p}{]} \PY{o}{=} \PY{n}{new\PYZus{}values}
+             \PY{k}{return} \PY{n}{new\PYZus{}df}
+\end{Verbatim}
+
+
+    \begin{quote}
+Firstly, I created a copy of our dataframe, named df\_genres\_ops. By
+using tidy\_split function I did split each genre and assign to its
+corresponding duplicate movie row, named the result as
+multiple\_genres\_separated.
+
+Then I dropped the movies with multiple genres from the original copy
+df\_genres\_ops.
+
+Finally, I merged two dataframes, df\_genres\_ops and
+multiple\_genres\_separated. (Udacity source)
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{df\PYZus{}genres\PYZus{}ops} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n}{multiple\PYZus{}genres\PYZus{}separated} \PY{o}{=} \PY{n}{tidy\PYZus{}split}\PY{p}{(}\PY{n}{multiple\PYZus{}genres}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{genres}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{multiple\PYZus{}genres}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{df\PYZus{}genres\PYZus{}ops} \PY{o}{=} \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{multiple\PYZus{}genres\PYZus{}separated}\PY{p}{,} \PY{n}{ignore\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(9832, 7)
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:}          id                  original\_title     genres  vote\_count  \textbackslash{}
+         9822  11850  Invasion of the Body Snatchers    Mystery          87   
+         9823  10766                 Damien: Omen II     Action          71   
+         9824  10766                 Damien: Omen II      Drama          71   
+         9825  10766                 Damien: Omen II     Horror          71   
+         9826  10766                 Damien: Omen II   Thriller          71   
+         9827  11837                  Watership Down  Adventure          67   
+         9828  11837                  Watership Down  Animation          67   
+         9829  11837                  Watership Down      Drama          67   
+         9830   5780                    Torn Curtain    Mystery          46   
+         9831   5780                    Torn Curtain   Thriller          46   
+         
+               vote\_average  release\_year   revenue\_adj  
+         9822           6.5          1978  8.038036e+07  
+         9823           6.1          1978  8.864292e+07  
+         9824           6.1          1978  8.864292e+07  
+         9825           6.1          1978  8.864292e+07  
+         9826           6.1          1978  8.864292e+07  
+         9827           6.8          1978  1.241401e+07  
+         9828           6.8          1978  1.241401e+07  
+         9829           6.8          1978  1.241401e+07  
+         9830           6.3          1966  8.733419e+07  
+         9831           6.3          1966  8.733419e+07  
+\end{Verbatim}
+            
+    \begin{quote}
+As can be seen, the movies with multiple genres are splitted and each of
+its genre is assigned to one of these duplicates.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} guarantee that each genre is lowercase}
+         \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{genres}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{genres}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}          id                  original\_title     genres  vote\_count  \textbackslash{}
+         9822  11850  Invasion of the Body Snatchers    mystery          87   
+         9823  10766                 Damien: Omen II     action          71   
+         9824  10766                 Damien: Omen II      drama          71   
+         9825  10766                 Damien: Omen II     horror          71   
+         9826  10766                 Damien: Omen II   thriller          71   
+         9827  11837                  Watership Down  adventure          67   
+         9828  11837                  Watership Down  animation          67   
+         9829  11837                  Watership Down      drama          67   
+         9830   5780                    Torn Curtain    mystery          46   
+         9831   5780                    Torn Curtain   thriller          46   
+         
+               vote\_average  release\_year   revenue\_adj  
+         9822           6.5          1978  8.038036e+07  
+         9823           6.1          1978  8.864292e+07  
+         9824           6.1          1978  8.864292e+07  
+         9825           6.1          1978  8.864292e+07  
+         9826           6.1          1978  8.864292e+07  
+         9827           6.8          1978  1.241401e+07  
+         9828           6.8          1978  1.241401e+07  
+         9829           6.8          1978  1.241401e+07  
+         9830           6.3          1966  8.733419e+07  
+         9831           6.3          1966  8.733419e+07  
+\end{Verbatim}
+            
+    \begin{quote}
+First of all, as we will be looking for the movies in 2000s, I am going
+to filter df\_genres\_ops dataframe.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{df\PYZus{}genres\PYZus{}ops} \PY{o}{=} \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{release\PYZus{}year \PYZgt{}= 2000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:}                   id   vote\_count  vote\_average  release\_year   revenue\_adj
+         count    6565.000000  6565.000000   6565.000000   6565.000000  6.565000e+03
+         mean    60038.902513   724.939680      6.150327   2008.359634  1.444381e+08
+         std     82262.182890  1053.905171      0.750845      4.376059  2.193520e+08
+         min        12.000000    45.000000      3.300000   2000.000000  2.370705e+00
+         25\%      8968.000000   138.000000      5.700000   2005.000000  1.812426e+07
+         50\%     14873.000000   320.000000      6.100000   2009.000000  6.680736e+07
+         75\%     76543.000000   823.000000      6.600000   2012.000000  1.739116e+08
+         max    417859.000000  9767.000000      8.200000   2015.000000  2.827124e+09
+\end{Verbatim}
+            
+    \begin{quote}
+Okay, the minimum release\_year is 2000.
+
+Now, we will groupby the movies with their mean vote\_average by 2
+variables: release\_year and genres, respectively:
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{release\PYZus{}year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{genres}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vote\PYZus{}average}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} release\_year  genres         
+         2000          action             5.957692
+                       adventure          6.155556
+                       animation          6.450000
+                       comedy             6.034375
+                       crime              6.206667
+                       drama              6.585714
+                       family             6.010000
+                       fantasy            5.650000
+                       history            6.250000
+                       horror             5.587500
+                       music              7.160000
+                       mystery            6.216667
+                       romance            5.984615
+                       science fiction    5.453846
+                       thriller           6.051724
+                       war                6.200000
+                       western            6.100000
+         2001          action             5.975000
+                       adventure          6.000000
+                       animation          6.400000
+                       comedy             5.917143
+                       crime              6.150000
+                       drama              6.535714
+                       family             6.180000
+                       fantasy            6.430000
+                       history            6.433333
+                       horror             5.812500
+                       music              6.500000
+                       mystery            6.340000
+                       romance            6.180000
+                                            {\ldots}   
+         2014          drama              6.513208
+                       family             6.625000
+                       fantasy            6.560000
+                       history            6.566667
+                       horror             5.376190
+                       music              6.685714
+                       mystery            6.550000
+                       romance            6.440741
+                       science fiction    6.543478
+                       thriller           6.177778
+                       war                6.845455
+                       western            6.200000
+         2015          action             6.148780
+                       adventure          6.326316
+                       animation          6.469231
+                       comedy             6.138710
+                       crime              6.222222
+                       documentary        6.575000
+                       drama              6.484946
+                       family             6.381250
+                       fantasy            6.226667
+                       history            6.733333
+                       horror             5.528571
+                       music              6.350000
+                       mystery            6.100000
+                       romance            6.440909
+                       science fiction    6.271429
+                       thriller           5.981356
+                       war                6.633333
+                       western            7.066667
+         Name: vote\_average, Length: 285, dtype: float64
+\end{Verbatim}
+            
+    \begin{quote}
+This is what we needed.
+
+Now there is a tricky part. I need to filter the max vote\_average mean
+from each year group. To do that I need to convert this pandas.GroupBy
+object to a dataframe first (Stackoverflow source):
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{df\PYZus{}grouped\PYZus{}mean} \PY{o}{=} \PY{n}{df\PYZus{}genres\PYZus{}ops}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{release\PYZus{}year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{genres}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vote\PYZus{}average}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}grouped\PYZus{}mean}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:}    release\_year     genres  vote\_average
+         0          2000     action      5.957692
+         1          2000  adventure      6.155556
+         2          2000  animation      6.450000
+         3          2000     comedy      6.034375
+         4          2000      crime      6.206667
+\end{Verbatim}
+            
+    \begin{quote}
+In the next step, I re-groupby this new dataframe called
+df\_grouped\_mean with its max vote\_average by release\_date column:
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{df\PYZus{}grouped\PYZus{}mean\PYZus{}max} \PY{o}{=} \PY{n}{df\PYZus{}grouped\PYZus{}mean}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{release\PYZus{}year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vote\PYZus{}average}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}grouped\PYZus{}mean\PYZus{}max}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}    release\_year  vote\_average
+         0          2000          7.16
+         1          2001          6.94
+         2          2002          7.20
+         3          2003          7.45
+         4          2004          6.55
+\end{Verbatim}
+            
+    \begin{quote}
+We have only last thing to do: Intersect (similar as inner join)
+df\_grouped\_mean and df\_grouped\_mean\_max so that we get the genre
+names of df\_grouped\_mean\_max entries (Stackoverflow source):
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{df\PYZus{}grouped\PYZus{}genres\PYZus{}vote\PYZus{}year} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}grouped\PYZus{}mean}\PY{p}{,} \PY{n}{df\PYZus{}grouped\PYZus{}mean\PYZus{}max}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inner}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{release\PYZus{}year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vote\PYZus{}average}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df\PYZus{}grouped\PYZus{}genres\PYZus{}vote\PYZus{}year}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:}     release\_year       genres  vote\_average
+         0           2000        music      7.160000
+         1           2001          war      6.940000
+         2           2002  documentary      7.200000
+         3           2003  documentary      7.450000
+         4           2004  documentary      6.550000
+         5           2005      history      6.600000
+         6           2006  documentary      6.600000
+         7           2007  documentary      7.250000
+         8           2008  documentary      7.600000
+         9           2009  documentary      7.400000
+         10          2010  documentary      7.360000
+         11          2011  documentary      6.812500
+         12          2012      western      7.700000
+         13          2013  documentary      6.900000
+         14          2014  documentary      7.800000
+         15          2015      western      7.066667
+\end{Verbatim}
+            
+    \begin{quote}
+OK, thats it! We just need to plot this.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{votes} \PY{o}{=} \PY{n}{df\PYZus{}grouped\PYZus{}genres\PYZus{}vote\PYZus{}year}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{release\PYZus{}year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{genres}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{votes}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vote Averages}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Years, Genres}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Highest Voted Movie Genres in 2000s}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_46_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{quote}
+We can see that "documentary" genre leaded most of the years in 2000s,
+in terms of the mean vote average.
+\end{quote}
+
+    \subparagraph{2. Is there any relation between the movies' vote average
+and revenue in terms of 2010
+dollars?}\label{is-there-any-relation-between-the-movies-vote-average-and-revenue-in-terms-of-2010-dollars}
+
+    \begin{quote}
+To answer this question, we need to group revenue\_adj values to certain
+thresholds and see the trends. Lets see some details.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:}                   id   vote\_count  vote\_average  release\_year   revenue\_adj
+         count    3688.000000  3688.000000   3688.000000   3688.000000  3.688000e+03
+         mean    47159.190618   565.996204      6.240076   2002.292842  1.440534e+08
+         std     76316.028904   885.948174      0.765431     11.069910  2.187830e+08
+         min         5.000000    45.000000      3.300000   1960.000000  2.370705e+00
+         25\%      5250.250000   109.000000      5.700000   1996.000000  2.255749e+07
+         50\%     11040.500000   240.500000      6.300000   2005.000000  6.975854e+07
+         75\%     50327.750000   606.000000      6.800000   2011.000000  1.732400e+08
+         max    417859.000000  9767.000000      8.400000   2015.000000  2.827124e+09
+\end{Verbatim}
+            
+    \begin{quote}
+It's a good idea to split revenue\_adj to 4 groups: 25\% (very low),
+50\% (low), 75\% (normal) and 100\% (high), respectively (Udacity
+source):
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} split by percentiles}
+         \PY{n}{percentiles} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{first} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue\PYZus{}adj \PYZlt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{percentiles}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{second} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue\PYZus{}adj \PYZlt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ \PYZam{} revenue\PYZus{}adj \PYZgt{}= }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{percentiles}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{percentiles}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{third} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue\PYZus{}adj \PYZlt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ \PYZam{} revenue\PYZus{}adj \PYZgt{}= }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{percentiles}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{percentiles}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fourth} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue\PYZus{}adj \PYZgt{}= }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{percentiles}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{mean\PYZus{}quality\PYZus{}first} \PY{o}{=} \PY{n}{first}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{mean\PYZus{}quality\PYZus{}second} \PY{o}{=} \PY{n}{second}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{mean\PYZus{}quality\PYZus{}third} \PY{o}{=} \PY{n}{third}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{mean\PYZus{}quality\PYZus{}fourth} \PY{o}{=} \PY{n}{fourth}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{mean\PYZus{}quality\PYZus{}first}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{mean\PYZus{}quality\PYZus{}second}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{mean\PYZus{}quality\PYZus{}third}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{mean\PYZus{}quality\PYZus{}fourth}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.152711496746197
+6.113015184381772
+6.229284164859011
+6.465292841648589
+
+    \end{Verbatim}
+
+    \begin{quote}
+We can now plot a chart to see the trend.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} Create a bar chart with proper labels}
+         \PY{n}{locations} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
+         \PY{n}{heights} \PY{o}{=} \PY{p}{[}\PY{n}{mean\PYZus{}quality\PYZus{}first}\PY{p}{,} \PY{n}{mean\PYZus{}quality\PYZus{}second}\PY{p}{,} \PY{n}{mean\PYZus{}quality\PYZus{}third}\PY{p}{,} \PY{n}{mean\PYZus{}quality\PYZus{}fourth}\PY{p}{]}
+         \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Very Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{locations}\PY{p}{,} \PY{n}{heights}\PY{p}{,} \PY{n}{tick\PYZus{}label}\PY{o}{=}\PY{n}{labels}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Movie Vote Averages by Revenue in Terms of 2010 Dollars}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Revenues (in terms of 2010 dollars, accounting for inflation over time)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Movie Vote Average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_54_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+     \#\# Conclusions
+
+\subparagraph{1. Which genres has the highest average of votes from year
+to year in
+2000s?}\label{which-genres-has-the-highest-average-of-votes-from-year-to-year-in-2000s}
+
+\begin{quote}
+We can see that in 2000s, "documentary" genre has the most vote\_average
+count record by year to year (2002, 2003, 2004, 2006, 2007, 2008, 2009,
+2010, 2011, 2013, 2014). We can say that people vote higher points to
+documentary movies, when compared to movies with other genres. Another
+interesting point is that "music" genre came into prominence in year
+2000, which has mean vote\_average of 7.16.
+\end{quote}
+
+\subparagraph{2. Is there any relation between the movies' vote average
+and revenue in terms of 2010
+dollars?}\label{is-there-any-relation-between-the-movies-vote-average-and-revenue-in-terms-of-2010-dollars}
+
+\begin{quote}
+I tried to find a correlation between movie revenues in terms of 2010
+dollars and its vote\_average. Before making this exploration, my
+opinion was higher vote averages means higher revenues. I can say that I
+was right, because the highest vote\_average mean belongs to the highest
+revenue percentile (after 75\%), while the second one belongs to the
+second hisghest revenue percentile (after 50\%).
+\end{quote}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
